@@ -10,6 +10,7 @@ class Entity
 
 public:
     Entity(K k, V v);
+    Entity(K k);
     Entity() : key(K()), value(V()) {}
 
     K getKey();
@@ -26,8 +27,15 @@ public:
 template <typename K, typename V>
 Entity<K, V>::Entity(K k, V v)
 {
-    this->Key = k;
+    this->key = k;
     this->value = v;
+}
+
+template <typename K, typename V>
+Entity<K, V>::Entity(K k)
+{
+    this->key = k;
+    this->value = V();
 }
 
 //Getter for key

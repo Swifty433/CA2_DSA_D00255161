@@ -12,11 +12,16 @@ public:
 	void clear();
 	bool containsKey(K key);
 	V& get(K key);
+	void put(K key, V value);
 	BinaryTree<K> keySet();
-	//void put(K key, V value);
-	//int size();
-	//bool removeKey();
-	//V& operator[](K key);
+	int size();
+	bool removeKey(K key);
+	V& operator[](K key);
+
+	BinaryTree <Entity<K, V>> getBinaryTree();
+	void setBinaryTree(BinaryTree <Entity<K, V>> other);
+
+	BSTNode<K>* keySetHelper(const BSTNode<Entity<K, V>>* other);
 };
 
 //Constructor
@@ -34,6 +39,18 @@ TreeMap<K, V>::~TreeMap()
 }
 
 template <typename K, typename V>
+BinaryTree <Entity<K, V>> TreeMap<K, V>::getBinaryTree()
+{
+	return this->tree;
+}
+
+template <typename K, typename V>
+void TreeMap<K, V>::setBinaryTree(BinaryTree <Entity<K, V>> other)
+{
+	this->tree = other;
+}
+
+template <typename K, typename V>
 void TreeMap<K, V>::clear() 
 {
 	this->tree.clear();
@@ -41,26 +58,78 @@ void TreeMap<K, V>::clear()
 
 //Contains Key
 template <typename K, typename V>
-bool TreeMap<K, V>::containsKey(K key) 
+bool TreeMap<K, V>::containsKey(K key)
 {
-	V value = new V();
-	Entity<K, V> entity = entity(key, value);
-	if (this->tree.get(entity))
+	try
+	{
+		Entity<K, V> entity(key);
+		this->tree.get(entity);
+		return true;
+	}
+	catch (std::logic_error&)
 	{
 		return false;
 	}
-	else
-		return true;
 }
 
-template<typename K, typename V>
+template <typename K, typename V>
 V& TreeMap<K, V>::get(K key)
 {
-	Entity<K, V> entityToFind = Entity<K, V>(key, V());
-	Entity<K, V>* entityFound = this->tree.find(entityToFind);
+	Entity<K, V> entity(key);
+	try {
+		return this->tree.get(entity).getValue();
+	}
+	catch (const std::logic_error&) {
+		throw std::out_of_range("Key not found in TreeMap.");
+	}
+}
 
-	if (entityFound == nullptr)
-		throw std::runtime_error("Key not found");
+template <typename K, typename V>
+void TreeMap<K, V>::put(K key, V value)
+{
+	Entity<K, V> entity(key, value);
+	if (containsKey(key))
+	{
+		this->tree.get(entity).setValue(value);
+	}
 	else
-		return entityFound->value;
+	{
+		this->tree.add(entity);
+	}
+}
+
+template <typename K, typename V>
+BinaryTree<K> TreeMap<K, V>::keySet()
+{
+
+}
+
+template <typename K, typename V>
+BSTNode<K>* TreeMap<K, V>::keySetHelper(const BSTNode<Entity<K, V>>* other)
+{
+
+}
+
+template <typename K, typename V>
+int TreeMap<K, V>::size()
+{
+	return this->tree.count();
+}
+
+template <typename K, typename V>
+bool TreeMap<K, V>::removeKey(K key)
+{
+	Entity<K, V> entity(key);
+	return this->tree.remove(entity);
+}
+
+//Operator Overloading
+template <typename K, typename V>
+V& TreeMap<K, V>::operator[](K key)
+{
+	if (!containsKey(key))
+	{
+		put(key, V());
+	}
+	return get(key);	
 }

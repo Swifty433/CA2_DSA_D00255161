@@ -50,8 +50,9 @@ BSTNode<T>* BSTNode<T>::operator=(const BSTNode<T>& other)
 		this->left = new BSTNode<T>(*other.left);
 	if (other.right != nullptr)
 		this->right = new BSTNode<T>(*other.right);
-
+	this->data = other.data;
 }
+
 template <class T>
 BSTNode<T>::~BSTNode()
 {
