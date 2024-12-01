@@ -40,6 +40,36 @@ bool VideoGames::getIsMultiplayer() const
     return isMultiplayer;
 }
 
+void VideoGames::setGameID(int id)
+{
+    game_ID = id;
+}
+
+void VideoGames::setGameName(const string& name)
+{
+    gameName = name;
+}
+
+void VideoGames::setGenre(const string& genreValue)
+{
+    genre = genreValue;
+}
+
+void VideoGames::setReleaseYear(int year)
+{
+    releaseYear = year;
+}
+
+void VideoGames::setUserRating(double rating)
+{
+    userRating = rating;
+}
+
+void VideoGames::setIsMultiplayer(bool multiplayer)
+{
+    isMultiplayer = multiplayer;
+}
+
 ostream& operator<<(ostream& os, const VideoGames& vg) {
     os << "ID: " << vg.getGameID()
         << ", Name: " << vg.getGameName()

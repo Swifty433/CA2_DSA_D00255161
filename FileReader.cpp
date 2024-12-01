@@ -47,11 +47,11 @@ vector<VideoGames> FileReader::readCSV(const string& filePath) {
 			string genre = row[2];
 			int year = stoi(row[3]);
 			double rating = stod(row[4]);
-			bool multiplayer = (row[5] == "true");
+			bool multiplayer = (row[5] == "true" || row[5] == "TRUE" || row[5] == "1" || row[5] == "yes" || row[5] == "Yes");
 
 			videoGames.emplace_back(id, name, genre, year, rating, multiplayer);
 		}
-		catch (const exception& e)
+		catch (const std::exception&)
 		{
 			cerr << "Error" << line << endl;
 		}
@@ -60,4 +60,3 @@ vector<VideoGames> FileReader::readCSV(const string& filePath) {
 	file.close();
 	return videoGames;
 }
-

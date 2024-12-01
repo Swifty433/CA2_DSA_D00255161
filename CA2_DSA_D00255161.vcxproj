@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="BSTNode.h" />
+    <ClInclude Include="DataOrganiser.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FileReader.h" />
     <ClInclude Include="TreeMap.h" />
     <ClInclude Include="VideoGames.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DataOrganiser.cpp" />
     <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="VideoGames.cpp" />
