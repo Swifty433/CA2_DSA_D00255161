@@ -19,60 +19,83 @@ int main()
 {
 	FileReader fileReader;
     DataOrganiser dataOrganiser;
+
 	string filePath = "C:\\Users\\josep\\Downloads\\VideoGames.csv";
 	vector<VideoGames> videoGames = fileReader.readCSV(filePath);
 
+    cout << "=== Main Menu ===" << endl;
+    cout << "1. Stage 2 (Doesn't Work)" << endl;
+    cout << "2. Stage 4 (Does Work)" << endl;
+    cout << "===================" << endl;
+    cout << "Enter your choice: ";
 
-    if (videoGames.empty())
+    int stageSelect;
+    cin >> stageSelect;
+
+    switch (stageSelect)
     {
-        cout << "Cant Load Data." << endl;
-        return 1;
+    case 1: {
+        cout << "This Stage is incomplete!" << endl;
+        break;
     }
-
-    bool isRunning = true;
-
-    while (isRunning)
-    {
-        displayMenu();
-        int choice;
-        cin >> choice;
-
-        switch (choice){
-        case 1:
-            cout << "Showing all video game data: " << endl;
-            fileReader.printData(videoGames);
-            break;
-        case 2: 
+    case 2:{
+        if (videoGames.empty())
         {
-            cout << "Please enter the field to sort by (Name, Genre, Year, Rating, Multiplayer)";
-            string field;
-            cin >> field;
-            dataOrganiser.createIndex(videoGames, field);
-            break;
+            cout << "Cant Load Data." << endl;
+            return 1;
         }
-        case 3: 
+
+        bool isRunning = true;
+
+        while (isRunning)
         {
-            cout << "Please enter a field to search by (Name, Genre, Year, Rating, Multiplayer)";
-            string field;
-            cin >> field;
+            displayMenu();
+            int choice;
+            cin >> choice;
 
-            cout << "Please enter a value to search for: ";
-            string value;
-            cin.ignore();
-            getline(cin, value);
-            dataOrganiser.viewSubset(videoGames, field, value);
+            switch (choice) {
+            case 1:
+                cout << "Showing all video game data: " << endl;
+                fileReader.printData(videoGames);
+                break;
+            case 2:
+            {
+                cout << "Please enter the field to sort by (Name, Genre, Year, Rating, Multiplayer)";
+                string field;
+                cin >> field;
+                dataOrganiser.createIndex(videoGames, field);
+                break;
+            }
+            case 3:
+            {
+                cout << "Please enter a field to search by (Name, Genre, Year, Rating, Multiplayer)";
+                string field;
+                cin >> field;
 
-            break;
+                cout << "Please enter a value to search for: ";
+                string value;
+                cin.ignore();
+                getline(cin, value);
+                dataOrganiser.viewSubset(videoGames, field, value);
+
+                break;
+            }
+            case 4:
+                cout << "Thank you! Goodbye!" << endl;
+                isRunning = false;
+
+                break;
+
+            default:
+                cout << "Invalid choice, Please input a valid choice" << endl;
+                break;
+            }
         }
-        case 4:
-            cout << "Thank you! Goodbye!" << endl;
-            isRunning = false;
-
-            break;
-        default:
-            cout << "Invalid choice, Please input a valid choice" << endl;
-            break;
-        }
+        break;
+    }
+    default:
+        cout << "Invalid choice. Please input a valid choice." << endl;
+        break;
     }
 
 	return 0;
