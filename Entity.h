@@ -9,6 +9,7 @@ class Entity
     V value;
 
 public:
+    //~Entity();
     Entity(K k, V v);
     Entity(K k);
     Entity() : key(K()), value(V()) {}
@@ -23,6 +24,13 @@ public:
     bool operator> (Entity<K, V>& other);
     bool operator< (Entity<K, V>& other);
 };
+
+//template <typename K, typename V>
+//Entity<K, V>::~Entity()
+//{
+//    delete this->key;
+//    delete this->value;
+//}
 
 template <typename K, typename V>
 Entity<K, V>::Entity(K k, V v)

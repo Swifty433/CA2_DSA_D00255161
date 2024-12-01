@@ -22,10 +22,17 @@
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="BSTNode.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="FileReader.h" />
     <ClInclude Include="TreeMap.h" />
+    <ClInclude Include="VideoGames.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FileReader.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="VideoGames.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\VideoGames.csv" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

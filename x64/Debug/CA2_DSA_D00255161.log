@@ -1,2 +1,6 @@
-﻿  Main.cpp
+﻿  FileReader.cpp
+  Main.cpp
+  VideoGames.cpp
+  Generating Code...
+C:\Users\josep\source\repos\CA2_DSA_D00255161\CA2_DSA_D00255161\FileReader.cpp(29,1): warning C4715: 'FileReader::readCSV': not all control paths return a value
   CA2_DSA_D00255161.vcxproj -> C:\Users\josep\source\repos\CA2_DSA_D00255161\x64\Debug\CA2_DSA_D00255161.exe
