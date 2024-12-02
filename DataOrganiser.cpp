@@ -5,11 +5,13 @@
 
 using namespace std;
 
+//createIndex method to create index based on a field
 void DataOrganiser::createIndex(const vector<VideoGames>& data,
 	const string& field)
 {
+	//using map to store the number of occurrences of eacah key for the given field
 	map<string, int> index;
-	for (const auto& game : data)
+	for (const auto& game : data) //lopps through
 	{
 		string key;
 		if (field == "name")
@@ -44,18 +46,18 @@ void DataOrganiser::createIndex(const vector<VideoGames>& data,
 	for (const auto& [key, count] : index) {
 		cout << key << ": " << count << " entries\n";
 	}*/
-
+	//displays the create index with counts for each key
 	cout << "Index for field: " << field << endl;
 	for (const auto& entry : index) { // Use `entry` to avoid key ambiguity
 		cout << entry.first << ": " << entry.second << " entries\n";
 	}
 }
-
+//viewSubset method filters and displays the videoGames data based on field
 void DataOrganiser::viewSubset(const vector<VideoGames>& data, const string& field, const string& value)
 {
 	cout << "Filtered Data for " << field << " = " << value << ":\n";
 	bool found = false;
-
+	// Loops through each game in the data vector and check if it matches the provided field and value
 	for (const auto& game : data) {
 		if ((field == "name" && game.getGameName() == value) ||
 			(field == "genre" && game.getGenre() == value) ||
@@ -63,9 +65,9 @@ void DataOrganiser::viewSubset(const vector<VideoGames>& data, const string& fie
 			(field == "rating" && to_string(game.getUserRating()) == value) ||
 			(field == "multiplayer" && (game.getIsMultiplayer() ? "true" : "false") == value)) {
 			cout << game << endl;
-			found = true;
+			found = true; //set to true if match found
 		}
 	}
 
-	if (!found) cout << "No matching records found.\n";
+	if (!found) cout << "No matching records found.\n"; //else prints message nothing found
 }

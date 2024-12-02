@@ -5,15 +5,17 @@ using namespace std;
 template <typename K, typename V>
 class Entity
 {
-    K key;
-    V value;
+    K key; //the key of entity
+    V value; //the value associated with the key
 
 public:
     //~Entity();
-    Entity(K k, V v);
-    Entity(K k);
-    Entity() : key(K()), value(V()) {}
+    //constructors
+    Entity(K k, V v); //initializes with given key and value 
+    Entity(K k); //initializes with only key
+    Entity() : key(K()), value(V()) {} //default constructor, ititializes the key and value 
 
+    //getters and setters
     K getKey();
     V getValue();
     void setKey(K k);

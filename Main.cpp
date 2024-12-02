@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void displayMenu() {
+void displayMenu() {//main display menu for stage 4
     cout << "=== Video Games List ===" << endl;
     cout << "1. Show all data!" << endl;
     cout << "2. Search by field!" << endl;
@@ -17,12 +17,15 @@ void displayMenu() {
 
 int main()
 {
-	FileReader fileReader;
+	FileReader fileReader; //creates an instance of fileread and dataorganiser
     DataOrganiser dataOrganiser;
 
+    //hardcoding filePath(wouldn't work for some reason when i wouldnt)
 	string filePath = "C:\\Users\\josep\\Downloads\\VideoGames.csv";
+    //read the data from csv file
 	vector<VideoGames> videoGames = fileReader.readCSV(filePath);
 
+    //menu for picking which stage
     cout << "=== Main Menu ===" << endl;
     cout << "1. Stage 2 (Doesn't Work)" << endl;
     cout << "2. Stage 4 (Does Work)" << endl;
@@ -32,6 +35,7 @@ int main()
     int stageSelect;
     cin >> stageSelect;
 
+    //swtich case to pick what stage you wanted to do
     switch (stageSelect)
     {
     case 1: {
@@ -60,6 +64,7 @@ int main()
                 break;
             case 2:
             {
+                    //sort by specific field
                 cout << "Please enter the field to sort by (Name, Genre, Year, Rating, Multiplayer)";
                 string field;
                 cin >> field;
@@ -68,15 +73,16 @@ int main()
             }
             case 3:
             {
+                //allow to sort by specific field and value
                 cout << "Please enter a field to search by (Name, Genre, Year, Rating, Multiplayer)";
                 string field;
                 cin >> field;
 
                 cout << "Please enter a value to search for: ";
                 string value;
-                cin.ignore();
-                getline(cin, value);
-                dataOrganiser.viewSubset(videoGames, field, value);
+                cin.ignore(); //clears buffer before reading a line of input
+                getline(cin, value);//read the full value input with spaces
+                dataOrganiser.viewSubset(videoGames, field, value);//view subset matching field and value
 
                 break;
             }
